@@ -57,15 +57,15 @@ class StanfordCoreNLP:
 
     def sentiment_analysis_on_sentence(sentence):
     # The StanfordCoreNLP server is running on http://127.0.0.1:9000
-    nlp = StanfordCoreNLP('http://127.0.0.1:9000')
+        nlp = StanfordCoreNLP('http://127.0.0.1:9000')
     # Json response of all the annotations
-    output = nlp.annotate(sentence, properties={
-        "annotators": "tokenize,ssplit,parse,sentiment",
-        "outputFormat": "json",
+        output = nlp.annotate(sentence, properties={
+            "annotators": "tokenize,ssplit,parse,sentiment",
+            "outputFormat": "json",
         # Only split the sentence at End Of Line. We assume that this method only takes in one single sentence.
-        "ssplit.eolonly": "true",
+            "ssplit.eolonly": "true",
         # Setting enforceRequirements to skip some annotators and make the process faster
-        "enforceRequirements": "false"
-    })
+            "enforceRequirements": "false"
+            })
     # Only care about the result of the first sentence because we assume we only annotate a single sentence in this method.
-    return int(output['sentences'][0]['sentimentValue'])
+        return int(output['sentences'][0]['sentimentValue'])
